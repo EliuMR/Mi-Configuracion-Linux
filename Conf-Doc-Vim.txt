@@ -1,0 +1,13 @@
+Para colocar un tema a vim
+1)Crear carpeta color en vim
+$cd .vim
+$mkdir colors
+2)Colocar en la carpeta de colores el tema
+$git clone <theme>
+3)Activar en el archivo vimrc
+$cd /.etc
+$nano vimrc
+Agregar la linea
+  let g:airline_theme='theme'
+4)Restar vim
+
