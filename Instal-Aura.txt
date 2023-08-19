@@ -1,0 +1,26 @@
+#Instalar paquetes de Aura arch
+#Eliú Moreno Ramírez
+#2023-08-19
+1)Tener el páque a instalar por ejemplo Zotero
+2)Ver si en la area de Dependencia tiene el archivo package-<paquete> si sí descargar
+3)Descargar del área packege Actions: Download snapschot
+4)Se descargaran en el directorio donde esté trabajando dos o un archivo, según sea el caso, del tipo .tar.gz
+5)Si descargamos el archivo de package-<paquete> hay que descomprimir, no dirigimos al directorio de nuestros archivos en la consola y escribimos
+$tar xvf package.tar.gz /directorio_objetivo
+6) Si nos pide que faltan dependencias, instalamos
+$pacman -S dependencia1 dependencia2 ...
+Si nos sale error 404
+$pacman -Syu dependencia1 dependencia2
+7)Una vez extraidos los archivos, creará una nueva carpeta, accdemos a ella mediante ventana de comandos y hacemos makepkg
+$cd packafe-<paquete>
+$makepkg
+8)Se nos creará un nuevo archivo con terminación _64.pkg.tar.xz, movemos este archivo a la carpeta superior
+$cp archivo..._64.pkg.tar.xz /directorio_objetivo
+9)Una vez esto tenemos nuestros archivo del package sin embargo aún falta el de snapschot el cual es el otro archuvo tar.gz, repetimos pasos del 5 al 8 con este otro archivo.
+10)Las carpetas generadas por la extracción tar pidemos borrarlas.
+11) Instalación de los paquetes, para intalar estos paquetes podemos usar
+$sudo pacman -U *.tar.xz 
+Debemos estar seguros de que no haya más archivos con esa terminación, sino podemos instalar uno por uno con su respectivo nombre
+$sudo pacman -U package..._64.tar.xz
+$sudo pacman -U paquete..._64.tar.xz
+12)Terminado, podemos lanzar la aplicación en la terminal escribiendo su nombre
