@@ -1,0 +1,17 @@
+Pasos para ir configurando qtile
+
+Página para configurar botones en Qtile
+https://docs.qtile.org/en/latest/manual/config/keys.html
+
+Subir bajar volumen
+-página de PulseAudio
+-https://wiki.archlinux.org/title/PulseAudio
+#No necesite instalar nada para que los botones de subir, bajar y mute funcionaran.
+#Subir volumen con Fun+F3, bajar Fun+F2, mute Fun+F4
+
+Captura de pantalla
+-Se necesita la aplicación de scrot
+$sudo pacman -S scrot
+#Con eso ya actualizando el qtile guardado debe poder tomarse capturas con Sup+s
+
+
