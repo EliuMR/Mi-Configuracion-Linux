@@ -2,7 +2,7 @@ Pasos para ir configurando qtile
 #Instalar git
 $sudo pacman -S git
 
-#Instalar psutil para que reconozca los widgets
+#Instalar psutil para que reconozca los widgets, que nos sirven para detectar temperatura y estado de la ram
 $sudo pacman -S python-psutil
 
 Icono bateria en laptop
