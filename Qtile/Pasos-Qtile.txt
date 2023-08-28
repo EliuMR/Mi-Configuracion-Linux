@@ -1,4 +1,10 @@
 Pasos para ir configurando qtile
+#Instalar git
+$sudo pacman -S git
+#Instalar psutil para que reconozca los widgets
+$sudo pacman -S python-psutil
+
+
 
 Página para configurar botones en Qtile
 https://docs.qtile.org/en/latest/manual/config/keys.html

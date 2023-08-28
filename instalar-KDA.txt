@@ -1,0 +1,4 @@
+#Para tener el entorno de plasma  Kde habiendo instalado qtile de archinstall
+$sudo pacman -S xorg plasma plasma-wayland-session -kde-applications
+#posteriormente podriamos salir de sesiòn y en lightDM deberìa apreciarse ya Kde
+

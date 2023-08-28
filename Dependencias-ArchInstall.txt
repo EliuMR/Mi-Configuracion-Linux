@@ -1,0 +1,5 @@
+#Si la instalaciòn se hizo por archinstall se de necesita lo siguiente
+$sudo pacman -S kitty thunar rofi nitrogen picom
+
+#posteriormente serìa copiar las configuraciones config qtile y kitty que se encuentran en git
+

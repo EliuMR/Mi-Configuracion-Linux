@@ -1,6 +1,9 @@
 #Instalar paquetes de Aura arch
 #Eliú Moreno Ramírez
 #2023-08-19
+*Instalar tar
+$sudo pacman -S tar
+
 1)Tener el páque a instalar por ejemplo Zotero
 2)Ver si en la area de Dependencia tiene el archivo package-<paquete> si sí descargar
 3)Descargar del área packege Actions: Download snapschot
