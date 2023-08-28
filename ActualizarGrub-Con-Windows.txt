@@ -1,13 +1,22 @@
 #Primero instalamos "os-prober"
-$sudo os-prober
+$sudo pacman -S os-prober
+
 #Ejecutamos 
+$sudo os-prober
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
+
 #Debería actualizarse y detectar todos los sistemas operativos.
 #Si sale el error: : Warning: os-prober will not be executed to detect other booteble partions
+
 #Debemos ir al archivo de grub
 $sudo vim /etc/default/grub
 #Descomentar la línea que diga
-#GRUB_DISABLE_OS_PROBER=false
+   #GRUB_DISABLE_OS_PROBER=false 
+    |->GRUB_DISABLE_OS_PROBER=false
+
+#Volver a ejecutar
+$sudo grub-mkconfig -o /boot/grub/grub.cfg
+
 #Saldra algo como lo siguiente
 Generating grub configuration file ...
 Found linux image: /boot/vmlinuz-linux
