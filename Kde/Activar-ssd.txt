@@ -1,0 +1,54 @@
+#Se supone que tenemos instalado lightdm, por lo que hay que activar sddm y desactivar lightdm
+$ sudo systemctl disable lightdm.service
+$ sudo systemctl enable sddm.service
+
+#Realizamos un logout y ver si sì aparece ya con sddm, si sigue apareciendo lightm, corremos las primeras dos lineas y procedemos a realizar lo siguiente
+
+#Forzar un inicio
+$sudo systemctl start sddm.service
+
+#Irà a logout e iniciarà sddm si cuando ingresamos la contraseña no inicia, forzamos un reinicio deberìa iniciar correctamanete ahora sì con sddm
+
+
+#Configurando un tema, por ejemplo vamos a instalar 
+#En la carpeta de descargas creamos una para descargarlo o bien podrìa ser en la misma, al terminar se puede borrar dicha carpeta
+$cd Dowloads
+$cd Themes-sddm
+
+#Procedemos a clonar de git algùn tema
+$git clone https://github.com/callmezatiel/blossom.git
+
+#Tendremos ahora una carpeta llamada blosom que copiaremos a /usr/share/sddm/themes
+$sudo cp -r blossom /usr/share/sddm/themes
+
+#Por ùltimo falta activarlo por lo que creamos un archivo de configuraciones
+·Nota 1: El archivo no existe como tal, sin embargo cuando instalamos sddm en una carpeta viene como modificar toda la configuracion de sddm, por lo que vamos a copiar esa plantilla
+·Nota 2:Este paso solo se hace la primera vez que instalamos un tema, con un segundo tema ya se debe omitir
+$sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf
+·Confirmamos que sì se copio
+$cat /etc/ssdm.conf
+
+#Activamos el tema, en archivo sddm.conf
+$sudo nano /etc/sddm.conf
+·Nos vamos al apartado del archivo siguiente
+|[Theme]
+|#Current theme name
+|Current=
+·Escibimos en Current el tema, en este caso blossom
+|Current=blossom
+·Guardamos con Ctrl+x y aceptamos
+
+#Nos aseguramos que si se haya guardado
+$cat /etc/sddm.conf
+
+
+#Hacemos un logout y ver que todo haya salido correctamente
+
+
+#Comandos extras
+·Test
+$sddm-greeter --test-mode --theme /usr/share/sddm/themes/breeze
+·Nombre de temas
+$ls /usr/share/sddm/themes
+
+https://github.com/lll2yu/sddm-lain-wired-theme.git
