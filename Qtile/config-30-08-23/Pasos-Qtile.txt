@@ -1,0 +1,50 @@
+Pasos para ir configurando qtile
+#Instalar git
+$sudo pacman -S git
+
+#Instalar psutil para que reconozca los widgets, que nos sirven para detectar temperatura y estado de la ram
+$sudo pacman -S python-psutil
+
+Icono bateria en laptop
+$sudo pacman -S cbatticon
+
+Subir bajar volumen
+Página para configurar botones en Qtile
+https://docs.qtile.org/en/latest/manual/config/keys.html
+-página de PulseAudio
+-https://wiki.archlinux.org/title/PulseAudio
+#No necesite instalar nada para que los botones de subir, bajar y mute funcionaran.
+#Subir volumen con Fun+F3, bajar Fun+F2, mute Fun+F4
+
+Captura de pantalla
+-Se necesita la aplicación de scrot
+$sudo pacman -S scrot
+#Con eso ya actualizando el qtile guardado debe poder tomarse capturas con Sup+s
+
+Instalación de una terminal, explorador de archivos, menu, app para fondos pantalla, para transparencia en terminal, respectivamente son:
+$sudo pacman -S kitty thunar rofi nitrogen picom
+
+Posterimomente nos vamos a config
+$cd .config
+
+Aquí nos dirigimos a la carpta de qtile
+$cd qtile
+
+Configuramos el archivo config.py con el editor de texto que quereamos, por ejemplo vim
+$sudo vim config.py
+
+Procedemos a copiar la configuracion más reciente del repositorio, es decir eliminamos todo lo escrito arriba y copiamos el archivo del 
+repositorio y lo pegamos en nuestro editor de texto (recordar que estamos modificando config.py) gurdamos y salimos, si usamos vim tecleamos ESC y posteriormente :wq en caso que usemos nano Crtl+x y decimos que sí
+
+Crearemos un archivo de inicio, esto para que cada vez que inicie la maquina algunas configuraciones estén ya arrancadas, por ejemplo distribucion teclado en español, picom, el widget de la bateria
+$sudo nano autostart.sh
+
+Copiamos el archivo que se encuentra en el repositorio https://github.com/EliuMR/Mi-Configuracion-Linux/blob/master/Qtile/autostart.sh
+y lo pegamos en nuestro archivo que acabamos de crear
+
+Hay que hacer ejecutable ese archivo sh
+$sudo chmod +x autostart.sh
+
+Reiniciamos qtile presionando Ctrl+Windows+R
+
+Debieron actualizarse los cambios sin embargo para un reinicio completo debemos ir a la parte superior dereche debe aparecer un boton que dice "salir" lo presionamos, empezará una cuenta regresiva y nos sacará al inicio donde logeamos nuestro usuario para ingresar al linux. Es todo, ahora configura como más te plazca...
