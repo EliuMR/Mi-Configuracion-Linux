@@ -1,29 +1,8 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
 #
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
+#Tema
+#Autor:Eliú Moreno Ramírez
+#Fecha: 30-08-23
 #
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import subprocess
 from libqtile import hook
@@ -33,16 +12,14 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-#Para decoración de barra widgets
-#from qtile_extras import widget
-#from qtile_extras.widget.decorations import PowerLineDecoration
-#powerline = {
-#    "decorations": [
-#        PowerLineDecoration()
-#    ]}
+from libqtile import qtile
 
-color_barra="#2c2d4b"
-fuente_barra="JetBrains Mono Bold"
+#Para decoración de barra widgets
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration
+
+color_barra="#353446"
+fuente_barra="JetBrains Mono SemiBold"
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -106,19 +83,10 @@ for i in groups:
     keys.extend(
         [
             # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+            Key([mod],i.name,lazy.group[i.name].toscreen(),desc="Switch to group {}".format(i.name),
             ),
             # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
+            Key([mod, "shift"],i.name,lazy.window.togroup(i.name, switch_group=True),desc="Switch to & move focused window to group {}".format(i.name),),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
@@ -126,10 +94,11 @@ for i in groups:
         ]
     )
 
+#Tema actual de cada layout
 def init_layout_theme():
-    return {"margin":5,
+    return {"margin":7,
 	    "border_width":5,
-	    "border_focus":"#6490EB",
+	    "border_focus":"#a74978",
 	    "border_normal":"#4c566a"}
 
 layout_theme=init_layout_theme()
@@ -158,44 +127,37 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+def search():
+	qtile.cmd_spawn("rofi -show drun")
+
+powerline = {
+    "decorations": [
+        PowerLineDecoration(path="forward_slash",size=8)
+    ]
+}
+
+powerline2 = {
+    "decorations": [
+        PowerLineDecoration(path="back_slash",size=8)
+    ]
+}
+
+
 screens = [
     Screen(
         top=bar.Bar(
             [
-		widget.Spacer(length=15,
-                    background='#282738',
-                ),#Espacio
+		        widget.Spacer(length=15,background=color_barra,),#Espacio
+                #Escritorio nombre
+		        widget.GroupBox(fontsize=24,borderwidth=3,highlight_method='block',active='#CAA9E0',block_highlight_text_color="#91B1F0",highlight_color='#4B427E',inactive='#282738',foreground='#000000',background=color_barra,this_current_screen_border='#353446',this_screen_border='#353446',other_current_screen_border='#353446',other_screen_border='#353446',urgent_border='#353446',rounded=True,disable_drag=True,),         
 
-		widget.GroupBox(
-                    fontsize=24,
-                    borderwidth=3,
-                    highlight_method='block',
-                    active='#CAA9E0',
-                    block_highlight_text_color="#91B1F0",
-                    highlight_color='#4B427E',
-                    inactive='#282738',
-                    foreground='#4B427E',
-                    background='#353446',
-                    this_current_screen_border='#353446',
-                    this_screen_border='#353446',
-                    other_current_screen_border='#353446',
-                    other_screen_border='#353446',
-                    urgent_border='#353446',
-                    rounded=True,
-                    disable_drag=True,
-                 ),       #Escritorio actual         
+                #widget.Prompt(),
+		        
+                #Busqueda en rofi
+		        #widget.TextBox(fmt='Search', background='#282738',font="JetBrains Mono Bold",fontsize=13,foreground='#CAA9E0',mouse_callbacks={"Button1": search},),
 
-                widget.Prompt(),
-		
-                widget.WindowName(
-                    background = '#353446',
-                    format = "{name}",
-                    font='JetBrains Mono Bold',
-                    foreground='#CAA9E0',
-                    empty_group_string = 'Desktop',
-                    fontsize=13,
-
-                ),#Pagina actual
+		        #Ventana actual
+                widget.WindowName(background = color_barra,format = "{name}",font=fuente_barra,foreground='#ffffff',empty_group_string = 'Desktop',fontsize=13,),
                 #widget.Checkupdates(
                 #    custom_command="checkupdates",
                 #    backgound="555555",
@@ -205,69 +167,56 @@ screens = [
                 #    display_format="Actualizacions:{updates}",
                 #    padding=10,
                 #    ),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Systray(background='#282738',
-                    fontsize=2,),#
-		
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), #Separacion
-		widget.CPU(format="CPU:{load_percent}%",foreground="#000000",background="#BC92C1",font=fuente_barra),
-		widget.TextBox(text="T=",foreground="#000000",background="#BC92C1",font=fuente_barra,padding_y=3),
-                widget.ThermalSensor(foreground="#000000",background="#BC92C1",font=fuente_barra,threshold=50),
-
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), #Separacion
-                widget.NvidiaSensors(format='GPU: T={temp}°C',foreground="#000000" ,font=fuente_barra, background="#7DACC0"),
-
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), #Separacion
-		widget.Memory(
-                    format='RAM: {MemUsed: .0f}{mm}',
-                    foreground='#000000',
-		    background="#a3cde0",
-                    font=fuente_barra,
-                    fontsize=13,
-                    update_interval=5,
-                ), #Memoria disponible
-
-		#widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), #Separacion
-               # widget.Battery(
-               #     font='JetBrains Mono Bold',
-               #     background='#586c5b',
-               #     foreground='#CAA9E0',
-               #     format='{percent:2.0%}',
-               #     fontsize=13,
-               # ),#Bateria		
-		
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), 
-		widget.Clock(format="%d-%m %I:%M %p",foreground="#000000",background="#abc193",font=fuente_barra),
-		
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), 
+               # widget.Chord(chords_colors={"launch": ("#ff0000", "#ffffff"),},name_transform=lambda name: name.upper(),),
+                
+                #Widget sistema
+                widget.Systray(background=color_barra,fontsize=2,),
+                widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline2), #Separacion
+                #Info CPU
+		        widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra,**powerline2), #Separacion
+		        widget.CPU(format="CPU:{load_percent}%",foreground="#000000",background="#BC92C1",font=fuente_barra),
+		        widget.TextBox(text="T=",foreground="#000000",background="#BC92C1",font=fuente_barra,padding_y=3),
+                widget.ThermalSensor(foreground="#000000",background="#BC92C1",font=fuente_barra,threshold=50,**powerline),
+                
+        		widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline), #Separacion
+                #Info GPU
+                widget.NvidiaSensors(format='GPU: T={temp}°C',foreground="#000000" ,font=fuente_barra, background="#7DACC0",**powerline2),
+        		widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline2), #Separacion
+		        
+                #Info Memoria ram
+                widget.Memory(format='RAM: {MemUsed: .0f}{mm}',foreground='#000000',background="#a3cde0",font=fuente_barra,fontsize=13,update_interval=5,**powerline ), 		
+		        widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline), 
+                
+                #Hora y fecha
+		        widget.Clock(format="%d-%m %I:%M %p",foreground="#000000",background="#abc193",font=fuente_barra,**powerline2),		
+		        widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline2),
+    
+                #volumen
                 widget.TextBox(text="Vol:",foreground="#000000",background="#eed290",font=fuente_barra),
-                widget.PulseVolume(foreground="#000000",background="#eed290",limit_max_volume=False,font=fuente_barra),
+                widget.PulseVolume(foreground="#000000",background="#eed290",limit_max_volume=False,font=fuente_barra,**powerline),
+                widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline), 
+		
+                #Red
+                widget.Net(format='{down}↓↑',font=fuente_barra,foreground="#000000", background="#d88c74",**powerline2),
+		        widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline2),
 
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), 
-		widget.Net(format='{down}↓↑',font=fuente_barra,foreground="#000000", background="#d88c74"),
+                #Layout
+		        widget.CurrentLayout(foreground="#000000",background="#b76a77",font=fuente_barra,**powerline),
+		        widget.Sep(linewidth=0,padding=1,foreground="#e9d0de",background=color_barra,**powerline), 
+                
+                #Bateria
 
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), 
-		widget.CurrentLayout(foreground="#000000",background="#b76a77",font=fuente_barra),
 
-		widget.Sep(linewidth=0,padding=3,foreground="#e9d0de",background=color_barra), 
-                widget.QuickExit(
-                    default_text="Salir",
-                    foreground="#ffffff",
-		    background=color_barra,
-		    font="JetBrains Mono Bold",
-                    countdown_format="[{}]"),
-		widget.Sep(linewidth=0,padding=10,foreground="#e9d0de",background=color_barra), 
+
+
+                #Log out
+                widget.QuickExit(default_text="Exit",foreground="#ffffff",background=color_barra,font="JetBrains Mono Bold",countdown_format="[{}]"),widget.Sep(linewidth=0,padding=10,foreground="#e9d0de",background=color_barra), 
             ],
             32,
             #background="#282738",
-            opacity=0.8,
+            opacity=0.8, #opacidad barra 
             border_width=[0, 0, 0, 0],  # Draw top and bottom borders
-            margin = [10,20,6,20],
+            margin = [10,20,6,20], #Margen barra
 	  # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),

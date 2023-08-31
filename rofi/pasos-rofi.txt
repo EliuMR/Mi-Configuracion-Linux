@@ -1,0 +1,13 @@
+#Instalar rofi
+$pacman -S rofi
+#Instalación de nuevos temas
+·Ir al carpeta de los temas de rofi, crear un archivo llamado theme.rasi y copiar o escribir nuestro tema
+$cd /usr/share/rofi/themes/
+$sudo nano theme.rasi
+·Podrías optar por clonar nuestro tema de algun repositorio de git, copiarlo a la carpeta temas
+$git clone tema.git
+$cp theme.rasi /usr/share/rofi/themes/
+#Seleccionamos nuestro tema
+$/usr/share/rofi/themes/
+#Guardamos con Ctr+A y listo
+

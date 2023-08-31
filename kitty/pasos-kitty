@@ -1,0 +1,7 @@
+#Instalar kitty
+$sudo pacman -S kitty
+#Buscamos un tema de colores y pegamos la configuracion el archivo de kitty
+$cd .config/kitty
+$sudo nano kitty.conf
+#Borramos la configuración actual
+#Pegamos nuestro nuevo tema, guardamos y listo

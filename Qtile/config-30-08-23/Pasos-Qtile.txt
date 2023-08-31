@@ -24,6 +24,20 @@ $sudo pacman -S scrot
 Instalación de una terminal, explorador de archivos, menu, app para fondos pantalla, para transparencia en terminal, respectivamente son:
 $sudo pacman -S kitty thunar rofi nitrogen picom
 
+Instalación paqute qtile-extras
+#Descargar snapshot https://aur.archlinux.org/packages/qtile-extras-git
+#Descomprimimo
+$tar -xf qtile-extras-git.tar.gz
+Ingresamos a la carpeta creada
+$cd qtile-extras-git
+Instalamos unas dpendencias necesarias
+$sudo pacman -S python-setuptools-scm python-installer python-build
+Creamos el archuvo ejecutable
+$makepkg
+#Instalamos
+$sudo pacman -U qtile-extras-git-r270.ed01fd8-1-any.pkg.tar.zst 
+
+
 Posterimomente nos vamos a config
 $cd .config
 
