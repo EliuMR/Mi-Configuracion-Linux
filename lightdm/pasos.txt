@@ -14,6 +14,9 @@ greeter-session=lightdm-webkit2-greeter
 #Ahora colocamos nuestro tema preferido de algun repositorio, en este caso usaremos el tema "dmg"
 $cd /usr/share/lightdm-webkit/themes
 $git clone https://github.com/davidmogar/lightdm-webkit2-dmg_blue.git
+ó
+#copiar la carpeta aquí llamada dmg en /usr/share/lightdm-webkit/themes
+
 
 #Seleccionamos nuestro tema en la configuracion webkit
 $sudo nano /etc/lightdm/lightdm-webkit2-greeter.conf
