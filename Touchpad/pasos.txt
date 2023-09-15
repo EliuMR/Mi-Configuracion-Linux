@@ -1,0 +1,12 @@
+Permitir que se realice el tapping después de instalar Arch
+
+#Se necesita crear un archivo para permitir esto:
+$sudo nano /etc/X11/xorg.conf.d/30-touchpad.conf
+
+#Se escribe en dicho archivo lo siguiente:
+
+Section "InputClass"
+    Identifier "touchpad catchall"
+    Driver "libinput"
+    Option "Tapping" "on"
+EndSection
