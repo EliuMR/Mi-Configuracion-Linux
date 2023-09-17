@@ -19,6 +19,5 @@ GRUB_THEME="BOOT_GRUB_LOCATION/themes/<theme_name>/theme.txt"
 #Actualizamos la configuración del grub
 $sudo grub-mkconfig -o BOOT_GRUB_LOCATION/grub.cfg
 
-
-
+#Si se rompe el grub de los dispositivos, la copia de seguridad por defecto se encuentra en una carpeta del dispositivo y dentro de la carpeta existe otra que se llama Default, donde se encuentra el grub
 
