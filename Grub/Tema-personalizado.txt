@@ -1,0 +1,24 @@
+#Pasos para poner temas en grub
+
+#Crear un directorio para temas para el grub
+$cd /boot/grub/
+$mkdir themes
+
+#Descargar algún tema, y colocarlo en la carpeta de temas
+$git clone ...tema
+$cp -r tem /boot/grub/themes/
+
+#Vamos a modificar el archivo del grub
+$sudo nano /etc/default/grub
+-Aquí vamos a modificar la resolución de nuestra configuración del dislpay, descomentando y colocando nuestra resolución de computadora
+$GRUB_GFXMODE=1920x1080
+-Agregar la ruta de nuestro tema
+GRUB_THEME="BOOT_GRUB_LOCATION/themes/<theme_name>/theme.txt"
+-Guardamos nuestra configuración Ctrl+X
+
+#Actualizamos la configuración del grub
+$sudo grub-mkconfig -o BOOT_GRUB_LOCATION/grub.cfg
+
+
+
+
