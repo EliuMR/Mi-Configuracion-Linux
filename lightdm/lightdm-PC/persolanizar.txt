@@ -1,0 +1,20 @@
+#Cambiar el icono princial de lightdm
+·Buscamos un icono lo renombramos como ".face" posteriormente lo ponemos en el home, y lightdm lo detectará como nuestro avatar
+
+#Cambiar el fondo de pantalla
+·Buscar un fondo y colocarlo en algún directorio, podría ser en el mismo /etc/lightdm
+·Acceder a la configuración
+$sudo nano /etc/lightdm/lightdm-gtk-greeter.conf
+·Buscamos la linea background (supongamos que nuestro fondo está en /etc/lightdm/Pictures/fondo.png)
+background=/etc/lightdm/Pictures/fondo.png
+
+#Tipografía
+·Acceder a la configuración
+$sudo nano /etc/lightdm/lightdm-gtk-greeter.conf
+·Escribir la fuente
+font-name=monospace
+
+#Testear el lightdm
+$lightdm --test-mode --debug
+
+#En la carpeta se encuentran los archivos por defecto de /etc/lightdm/lightdm.conf y /etc/lightdm/lightdm-gtk-greeter.conf
