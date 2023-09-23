@@ -73,7 +73,7 @@ keys = [
     Key([],"XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5% ")),
     Key([],"XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle ")),
     #captura de pantalla
-    Key([mod],"s",lazy.spawn("scrot")),
+    Key([mod],"s",lazy.spawn("scrot ~/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png")),
 
 ]
 
