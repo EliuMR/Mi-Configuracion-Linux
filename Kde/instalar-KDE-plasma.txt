@@ -2,3 +2,14 @@
 $sudo pacman -S xorg plasma plasma-wayland-session kde-applications
 #posteriormente podriamos salir de sesiòn y en lightDM deberìa apreciarse ya Kde
 
+#Desinnstalar paquetes innecesarios
+·games, multimedia,educations
+$sudo pacman -Rns kde-games kde-multimedia kde-educations
+·Dependecias innecesarias
+·Pim
+$sudo pacman -Rns kmail knotes kontact korganizer zanshin kdressbook itinerary akregator
+·network
+$sudo pacman -Rns falkon konversation kapete neochat tokodon
+
+
+$setxbmap latam
