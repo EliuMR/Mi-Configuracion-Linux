@@ -1,0 +1,14 @@
+#Para cambiar a zsh de bash
+·Instalamos zsh
+$sudo pacman -S zsh zsh-completions
+
+#Cambiar zsh por bash
+chsh -s /bin/zsh
+
+#Reiniciamos para que cambie zsh
+
+#Instalamos curl
+$sudo pacman -S curl
+
+#Instalamos zsh
+$sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
