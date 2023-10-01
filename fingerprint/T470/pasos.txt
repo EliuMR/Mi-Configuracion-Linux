@@ -38,6 +38,12 @@
 #Posteriormente podemos guardar nuestra huella con fprintd-enroll
 ~fprintd-enroll
 ·Podemos guardar nuestra huella deslizando de arriba para abajo del lector
+·Para seleccionar una nueva huella escribimos
+	~fprint-enroll -f <finger-name>
+		%Los nombres permitidos son: left-thumb, left-index-finger, 
+		left-middle-finger, left-ring-finger, left-little-finger, 
+		right-thumb, right-index-finger, right-middle-finger, 
+		right-ring-finger, right-little-finger
 
 #Procedemos a verificar
 ~fprintd-verify 
