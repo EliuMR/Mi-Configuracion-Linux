@@ -58,3 +58,6 @@
 	lightdm	|	/etc/pam.d/lightdm 
 	(loguear|	/etc/pam.d/lightdm-greeter
 	inicio) |
+
+
+#Toda la información fue tomada de https://wiki.archlinux.org/title/Lenovo_ThinkPad_T470
