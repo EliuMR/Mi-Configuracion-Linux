@@ -1,0 +1,60 @@
+#Primero checamos que se encuentre en la lista el controlador con lsusb, así que lo instalamos
+~sudo pacman -S usbutils
+~lsusb
+·Sale lo siguiente
+	Bus 002 Device 002: ID 0bda:0316 Realtek Semiconductor Corp. Card Reader
+	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 001 Device 004: ID 138a:0097 Validity, Inc.
+	Bud 001 Device 003: ID 5986:111c Bison Electronics Inc. Integrated Camera
+	Bud 001 Device 002: ID 8087:0a2b Intel Corp. Bluettoth wireless interface 
+	Bud 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+# El lector de huella (fingerprint reader) es el dispositivo con la ID 138a:0097
+
+#Procedemos a instalar algunas dependencias, pero primero vamos a desinstalar la que crea conflicto con la laptop Thinkpad T470
+~sudo pacman -RSU fprintd
+·Para las dependecias hay que descargar de repositorio de Aur, descargar fprintd-clients(https://aur.archlinux.org/packages/fprintd-clients), open-fprintd(https://aur.archlinux.org/packages/open-fprintd), python-validity(https://aur.archlinux.org/packages/python-validity)
+	*Una vez descargadas las tres snapchot
+	*Descomprimicos cada una con 
+		~tar -xf ...
+	*Entramos a cada una de las carpetas
+	 	~cd ...
+	*Compilamos en cada una el archivo generado
+		 ~makepkg ...
+	*Para cada makepkg pedirá dependencias pero sí del repositorio oficial
+		~sudo pacman -S dependecia1 dependencia2
+	*Instalamos fprintd-clients, open-fprintd python-validity en su respectivas carpetas
+		~sudo pacman -U ...
+
+#Primero hacemos un stop de python3-validity.service
+~systemctl stop python3-validity.service
+
+#Algunos pasos extra
+~validity-sensors-firmware
+~python /usr/share/python-validity/playground/factory-reset.py
+
+#Hacemos un start de python3-validity.service
+~systemctl start python3-validity.service
+
+#Posteriormente podemos guardar nuestra huella con fprintd-enroll
+~fprintd-enroll
+·Podemos guardar nuestra huella deslizando de arriba para abajo del lector
+
+#Procedemos a verificar
+~fprintd-verify 
+·Deslizamos nuestro dedo y debe resultar
+	Verify result: verify-match (done)
+
+#Para logear hay que editar /etc/pam.d/login agregando pam_fprintd.so
+~sudo vim /etc/pam.d/login
+	·Agregamos al inicio del archivo la siguiente línea:
+	auth sufficient pam_fprintd.so
+
+#Para que con las siguientes aplicaiciones use el detector de huella, se deben modificar el archivo correspondiente agregando la misma linea que en el paso anterior al inicio del archivo
+	___________________________________________
+	sudo	|	/etc/pam.d/sudo
+	___________________________________________
+	su	|	/etc/pam.d/su
+	___________________________________________
+	lightdm	|	/etc/pam.d/lightdm 
+	(loguear|	/etc/pam.d/lightdm-greeter
+	inicio) |
