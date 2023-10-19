@@ -17,3 +17,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 :source %
 
 #Checar que la carpeta de plugins sí se especifique
+
+#Para que salgan los vim icons
+~sudo pacman -S nerd-fonts
+#Agregar a kitty.conf
+font_family Nerd Font
